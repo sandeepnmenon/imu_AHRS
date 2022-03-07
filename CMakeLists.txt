@@ -39,8 +39,11 @@ ${PROJECT_SOURCE_DIR}/src
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
 add_library(${PROJECT_NAME} SHARED
+# src/AHRS.hpp
 src/MadgwickAHRS.cpp
-src/MadgwickAHRS.h
+src/MadgwickAHRS.hpp
+src/MahonyAHRS.cpp
+src/MahonyAHRS.hpp
 src/imu_trajectory.cpp
 )
 

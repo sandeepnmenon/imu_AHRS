@@ -1,4 +1,6 @@
-#include <MadgwickAHRS.h>
+// #include <AHRS.hpp>
+#include <MadgwickAHRS.hpp>
+#include <MahonyAHRS.hpp>
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -20,9 +22,9 @@ double convert_radians_to_degree(double angle);
 
 int main(int argc, char **argv)
 {
-    cout<<"Hello IMU"<<endl;
     const string file_path = string(argv[1]);
     const int num_rows = stoi(argv[2]);
+    const int sampleFrequency = stoi(argv[3]);
 
     // Vector to store timestamp, accelerometer and gyroscope data
     vector<vector<double>> data = read_IMU_from_csv(file_path, ",", num_rows);
@@ -31,8 +33,11 @@ int main(int argc, char **argv)
     double timestamp;
 
     // Initialise the filter
+    // TODO: Use factory pattern to initialise the filter
     Madgwick filter;
-    filter.begin(200);
+    // Mahony filter;
+    
+    filter.begin(sampleFrequency);
 
     // Initialise the angles
     double roll = 0.0;

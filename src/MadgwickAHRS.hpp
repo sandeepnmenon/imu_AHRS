@@ -16,6 +16,7 @@
 //=============================================================================================
 #ifndef MadgwickAHRS_h
 #define MadgwickAHRS_h
+// #include "AHRS.hpp"
 #include <math.h>
 #include <vector>
 

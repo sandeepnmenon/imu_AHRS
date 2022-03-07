@@ -4,7 +4,13 @@ This library wraps the official implementation of MadgwickAHRS and Mahony AHRS a
 
 
 # References.
-[1] https://x-io.co.uk/open-source-imu-and-ahrs-algorithms/
+[1] https://x-io.co.uk/open-source-imu-and-ahrs-algorithms
+
 [2] https://github.com/arduino-libraries/MadgwickAHRS
+
 [3] https://github.com/PaulStoffregen/MahonyAHRS/tree/master/src
 
+# TODO
+- [ ] Use AHRS base class to implement Madgwick and Mahony AHRS. Then use command line arguments to select which algorithm to use.
+- [] Add python binding
+- [] Realtime data input and visualization
