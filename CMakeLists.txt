@@ -47,6 +47,8 @@ src/MahonyAHRS.hpp
 src/imu_trajectory.cpp
 )
 
+add_subdirectory(pybind11)
+
 
 # add the executable
 add_executable(imu_trajectory src/imu_trajectory.cpp)
