@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
-#include <imu_trajectory_utils.cpp>
+#include <pybind11/stl.h>
+#include <imu_trajectory_utils.hpp>
 namespace py = pybind11;
 
 string TestBinding() {
