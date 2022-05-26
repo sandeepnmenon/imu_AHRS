@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.4...3.18)
 # set the project name
 project(imu_AHRS)
 
@@ -44,10 +44,17 @@ src/MadgwickAHRS.cpp
 src/MadgwickAHRS.hpp
 src/MahonyAHRS.cpp
 src/MahonyAHRS.hpp
+src/imu_trajectory_utils.cpp
 src/imu_trajectory.cpp
 )
+
+add_subdirectory(pybind11)
+pybind11_add_module(py_imu_trajectory src/imu_trajectory_pybind.cpp)
 
 
 # add the executable
 add_executable(imu_trajectory src/imu_trajectory.cpp)
 target_link_libraries(imu_trajectory ${PROJECT_NAME})
+target_link_libraries(py_imu_trajectory PUBLIC ${PROJECT_NAME})
+target_compile_definitions(py_imu_trajectory
+                           PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
