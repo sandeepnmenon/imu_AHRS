@@ -64,6 +64,10 @@ vector<vector<double>> get_imu_ahrs_output(string file_path, const int num_rows,
     
     // Vector to store timestamp, accelerometer and gyroscope data
     vector<vector<double>> data = read_IMU_from_csv(file_path, ",", num_rows);
+    if(data.size() == 0) {
+        cout << "Error: No data found in the file." << endl;
+        throw std::runtime_error("Error: No data found in the file.");
+    }
     double ax, ay, az;
     double gx, gy, gz;
     double timestamp;
