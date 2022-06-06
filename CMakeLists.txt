@@ -36,9 +36,9 @@ ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/src
 )
 
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
-add_library(${PROJECT_NAME} SHARED
+add_library(ahrs_lib STATIC
 # src/AHRS.hpp
 src/MadgwickAHRS.cpp
 src/MadgwickAHRS.hpp
@@ -47,6 +47,7 @@ src/MahonyAHRS.hpp
 src/imu_trajectory_utils.cpp
 src/imu_trajectory.cpp
 )
+set_target_properties(ahrs_lib PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 add_subdirectory(pybind11)
 pybind11_add_module(py_imu_trajectory src/imu_trajectory_pybind.cpp)
@@ -54,7 +55,7 @@ pybind11_add_module(py_imu_trajectory src/imu_trajectory_pybind.cpp)
 
 # add the executable
 add_executable(imu_trajectory src/imu_trajectory.cpp)
-target_link_libraries(imu_trajectory ${PROJECT_NAME})
-target_link_libraries(py_imu_trajectory PUBLIC ${PROJECT_NAME})
+target_link_libraries(imu_trajectory ahrs_lib)
+target_link_libraries(py_imu_trajectory PRIVATE ahrs_lib)
 target_compile_definitions(py_imu_trajectory
                            PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
