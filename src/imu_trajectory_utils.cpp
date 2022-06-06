@@ -60,7 +60,7 @@ double convert_radians_to_degree(double degrees)
 {
     return degrees * 180.0 / PI;
 }
-vector<vector<double>> get_imu_ahrs_output(string file_path, const int num_rows, const int sampleFrequency, const int useEuler) {
+vector<vector<double>> get_imu_ahrs_output(string file_path, const int num_rows, const int sampleFrequency, const int useEuler, const bool verbose) {
     
     // Vector to store timestamp, accelerometer and gyroscope data
     vector<vector<double>> data = read_IMU_from_csv(file_path, ",", num_rows);
@@ -106,9 +106,11 @@ vector<vector<double>> get_imu_ahrs_output(string file_path, const int num_rows,
         roll = filter.getRoll();
         pitch = filter.getPitch();
         yaw = filter.getYaw();
-
-        cout<<"Roll: "<<roll<<" Pitch: "<<pitch<<" Yaw: "<<yaw<<endl;
         
+        if(verbose)
+        {
+            cout<<i<<") Roll: "<<roll<<" Pitch: "<<pitch<<" Yaw: "<<yaw<<endl;
+        }
         // Get the quaternion and timestamp
         vector<double> quat = filter.getQuarternion();
         

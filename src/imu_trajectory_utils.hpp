@@ -17,4 +17,4 @@ void write_IMU_to_csv(const string file_path, const string delimiter, const vect
 double convert_radians_to_degree(double angle);
 
 // Returns IMU readings of the form <timestamp, qw, qx, qy, qz> or <timestamp, roll, pitch, yaw>
-vector<vector<double>> get_imu_ahrs_output(string file_path, const int num_rows, const int sampleFrequency, const int useEuler);
+vector<vector<double>> get_imu_ahrs_output(string file_path, const int num_rows, const int sampleFrequency, const int useEuler, const bool verbose=false);
