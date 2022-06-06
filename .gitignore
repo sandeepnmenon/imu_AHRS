@@ -3,3 +3,4 @@ build/
 lib/
 *.egg-info/
 dist/
+_skbuild/
