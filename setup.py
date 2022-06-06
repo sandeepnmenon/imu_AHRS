@@ -58,6 +58,9 @@ class CMakeBuild(build_ext):
 
         # In this example, we pass in the version to C++. You might not need to.
         cmake_args += [f"-DEXAMPLE_VERSION_INFO={self.distribution.get_version()}"]
+       # Pile all .so in one place and use $ORIGIN as RPATH
+        cmake_args += ["-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE"]
+        cmake_args += ["-DCMAKE_INSTALL_RPATH={}".format("$ORIGIN")]
 
         if self.compiler.compiler_type != "msvc":
             # Using Ninja-build since it a) is available as a wheel and b)
