@@ -12,5 +12,5 @@ This library wraps the official implementation of MadgwickAHRS and Mahony AHRS a
 
 # TODOs
 - [ ] Use AHRS base class to implement Madgwick and Mahony AHRS. Then use command line arguments to select which algorithm to use.
-- [ ] Add python binding.
+- [x] Add python binding.
 - [ ] Realtime data input and visualization.
